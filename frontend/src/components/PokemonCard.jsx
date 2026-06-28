@@ -1,13 +1,5 @@
 import { Link } from "react-router-dom";
-
-function getTypeClass(type) {
-  const normalized = type
-    ?.normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-
-  return normalized ? `type-${normalized}` : "type-default";
-}
+import { getTypeClass, translateType } from "../utils/pokemonTypes";
 
 function PokemonCard({ pokemon }) {
   const types = [pokemon.tipo_1, pokemon.tipo_2].filter(Boolean);
@@ -33,7 +25,7 @@ function PokemonCard({ pokemon }) {
           <div className="d-flex flex-wrap gap-2 mt-3">
             {types.map((type) => (
               <span key={type} className={`type-badge ${getTypeClass(type)}`}>
-                {type}
+                {translateType(type)}
               </span>
             ))}
           </div>

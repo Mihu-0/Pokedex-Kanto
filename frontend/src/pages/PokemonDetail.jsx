@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
-
-function getTypeClass(type) {
-  const normalized = type
-    ?.normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-
-  return normalized ? `type-${normalized}` : "type-default";
-}
+import { getTypeClass, translateType } from "../utils/pokemonTypes";
 
 function StatBar({ label, value }) {
   const safeValue = Number(value) || 0;
@@ -144,7 +136,7 @@ function PokemonDetail() {
             <div className="d-flex flex-wrap gap-2 mb-4">
               {types.map((type) => (
                 <span key={type} className={`type-badge ${getTypeClass(type)}`}>
-                  {type}
+                  {translateType(type)}
                 </span>
               ))}
             </div>
