@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
+import { getTypeValue, POKEMON_TYPES } from "../utils/pokemonTypes";
 
 function PokemonForm({ pokemon }) {
   const [form, setForm] = useState({
     pokedex_num: pokemon?.pokedex_num || "",
     nombre: pokemon?.nombre || "",
-    tipo_1: pokemon?.tipo_1 || "",
-    tipo_2: pokemon?.tipo_2 || "",
+    tipo_1: getTypeValue(pokemon?.tipo_1) || "",
+    tipo_2: getTypeValue(pokemon?.tipo_2) || "",
     altura_m: pokemon?.altura_m || "",
     peso_kg: pokemon?.peso_kg || "",
     descripcion: pokemon?.descripcion || "",
@@ -76,7 +77,7 @@ function PokemonForm({ pokemon }) {
             <input
               type="number"
               name="pokedex_num"
-              className="form-control"
+              className="form-select"
               value={form.pokedex_num}
               onChange={handleChange}
               disabled={!!pokemon || saving}
@@ -89,7 +90,7 @@ function PokemonForm({ pokemon }) {
             <input
               type="text"
               name="nombre"
-              className="form-control"
+              className="form-select"
               value={form.nombre}
               onChange={handleChange}
               disabled={saving}
@@ -99,27 +100,39 @@ function PokemonForm({ pokemon }) {
 
           <div className="col-md-6">
             <label className="form-label">Tipo principal</label>
-            <input
-              type="text"
+            <select
               name="tipo_1"
               className="form-control"
               value={form.tipo_1}
               onChange={handleChange}
               disabled={saving}
               required
-            />
+            >
+              <option value="">Selecciona un tipo</option>
+              {POKEMON_TYPES.map((pokemonType) => (
+                <option key={pokemonType.value} value={pokemonType.value}>
+                  {pokemonType.label}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="col-md-6">
             <label className="form-label">Tipo secundario</label>
-            <input
-              type="text"
+            <select
               name="tipo_2"
               className="form-control"
               value={form.tipo_2}
               onChange={handleChange}
               disabled={saving}
-            />
+            >
+              <option value="">Sin tipo secundario</option>
+              {POKEMON_TYPES.map((pokemonType) => (
+                <option key={pokemonType.value} value={pokemonType.value}>
+                  {pokemonType.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </section>
