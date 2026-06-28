@@ -2,7 +2,18 @@
 
 Aplicacion Full Stack PERN para administrar Pokemon de Kanto. Permite listar, buscar por nombre, filtrar por tipo, ver detalle, crear, editar y eliminar Pokemon.
 
-Los datos iniciales pueden cargarse desde PokeAPI usando un script de seed del backend. Los tipos se guardan en ingles, como vienen desde PokeAPI, y el frontend los muestra traducidos al espanol.
+Los datos iniciales pueden cargarse desde PokeAPI usando un script de seed del backend. Los tipos se guardan en ingles, como vienen desde PokeAPI, y el frontend los muestra traducidos al español.
+
+## Capturas
+
+### Pantalla principal
+![Pantalla principal](screenshots/home.jpeg)
+
+### Detalle
+![Detalle](screenshots/detalle.jpeg)
+
+### EDICIÓN
+![Formulario](screenshots/edicion.jpeg)
 
 ## Tecnologias
 
